@@ -13,6 +13,10 @@ public class HelloWorld {
     // The main() function is the entry point to your program
     public static void main(String[] args) {
         System.out.println("Hello Worlds!");
-        
     }
 }
+
+// How to create a new Java project in VS Code
+    // Type Shift + Ctrl + P and search for Java: Create Java Project
+    // Create a folder for the Java project
+    // 
