@@ -10,7 +10,7 @@ public class Strings {
         System.out.print("Input a single word: ");
         Scanner scnr = new Scanner(System.in);
         String inputString;
-        inputString = scnr.next(); // scnr.next() skips initial whitespace in input and gets characters until the next whitespace to make a string
+        inputString = scnr.next(); // .next() skips initial whitespace in input and gets characters until the next whitespace to make a string
         System.out.println(inputString);
 
         System.out.print("Input multiple words: ");
@@ -52,9 +52,8 @@ public class Strings {
         String state;
         String fullName;
         state = scnr.next(); // Get first word of input
-        fullName = scnr.nextLine(); // get remaining input
+        fullName = scnr.nextLine(); // get remaining text from input
 
-        System.out.println("You are" + fullName + " from " + state + "."); // Note how .nextLine gets the preceding space
-
+        System.out.println("You are" + fullName + " from " + state + "."); // Note how .nextLine() gets the preceding space
     }
 }
