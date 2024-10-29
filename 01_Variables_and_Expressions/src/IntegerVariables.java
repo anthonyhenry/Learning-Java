@@ -8,6 +8,7 @@ public class IntegerVariables {
         // This is how you declare an integer variable
         int userAge;
 
+        // Integer variables cannot be larger than 2 billion. This will result in an overflow - where the integer wraps back around to 1
 
         System.out.print("Enter your age: ");
         Scanner scnr = new Scanner(System.in);
