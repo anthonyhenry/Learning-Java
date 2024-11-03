@@ -40,5 +40,25 @@ public class StringAccessOperations {
         // You can replace parts of a string using .replace()
         updatedCaption = updatedCaption.replace(firstWordOfCaption, "First");
         System.out.println(updatedCaption);
+
+        //// Extract unique characters example ////
+        String inputString;
+        int i;
+
+        System.out.print("Type a string and I will extract unique characters: ");
+        inputString = scnr.next();
+
+        System.out.print("Unique characters found: ");
+
+        /* Your code goes here */
+        for(i = 0; i < inputString.length(); i++)
+        {
+            if(inputString.indexOf(inputString.charAt(i)) == i)
+            {
+                System.out.print(inputString.charAt(i) + " ");
+            }
+        }
+
+        System.out.println();
     }
 }
