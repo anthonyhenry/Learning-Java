@@ -59,6 +59,18 @@ public class Main {
         }
         System.out.println("]");
     }
+    public static void printOversizeArray(int[] arrayRef, int arraySize) {
+        int index;
+
+        System.out.print("[");
+        for (index = 0; index < arraySize; ++index) {
+            System.out.print(arrayRef[index]);
+            if (index != arraySize - 1) {  // Don't print trailing , for last element
+                System.out.print(", ");
+            }
+        }
+        System.out.println("]");
+    }
 
     // If an array size is changed by a method, then the new array size needs to be returned by the method
     public static int addArrayElement(String[] arrayRef, int currentSize, String elementToAdd)
@@ -89,6 +101,7 @@ public class Main {
             if (targetFound)
             {
                 arrayRef[index-1] = arrayRef[index];
+                arrayRef[index] = null;
             }
 
             // Check if matching element found
@@ -109,6 +122,41 @@ public class Main {
             return arraySize;
         }
     }
+
+    // An array can be constructed within a method. If the array needs to be used after the method returns, the array's reference can be returned.
+    public static int[] initializeArray(int value, int size)
+    {
+        int[] result = new int[size];
+
+        for(int i = 0; i < result.length; ++i)
+        {
+            result[i] = value;
+        }
+
+        return result;
+    }
+
+    // Methods often need to modify an array's size, but an array's length cannot be modified.
+    // Instead a new array with the modified size must be constructed.
+    public static String[] resize(String[] arrayReference, int newSize)
+    {
+        // Construct a new array of the modified size
+        String[] resultArray = new String[newSize];
+
+        // Determine the number of array elements to copy
+        int numToCopy;
+        numToCopy = Math.min(newSize, arrayReference.length);
+
+        // Copy elements from arrayReference to resultArray
+        for (int i = 0; i < numToCopy; ++i)
+        {
+            resultArray[i] = arrayReference[i];
+        }
+
+        // Return the new array
+        return resultArray;
+    }
+
 
 
     public static void main(String[] args) {
@@ -143,6 +191,14 @@ public class Main {
         printOversizeArray(names, namesSize);
 
         namesSize = removeFirst(names, namesSize, "Jovanna");
+        printOversizeArray(names, namesSize);
+
+        final int ARRAY_SIZE = 7;
+        int[] dataArray = initializeArray(5, ARRAY_SIZE);
+        printOversizeArray(dataArray, ARRAY_SIZE);
+
+        namesSize = 10;
+        names = resize(names, namesSize);
         printOversizeArray(names, namesSize);
     }
 
