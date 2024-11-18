@@ -4,6 +4,7 @@ public class Main {
 
     // This is how you create a user defined method in Java
     // User defined methods have a return type. Void is used if the method is not meant to return anything
+    // A method's local variables are discarded from memory upon a method's return; each new call creates new local variables in memory.
     public static int computeSquare(int numToSquare) // Parameters need to have their type specified
     {
         return numToSquare * numToSquare;
@@ -45,6 +46,71 @@ public class Main {
         return scnr.nextInt();
     }
 
+    // When oversize arrays are passed to a method, two parameters are needed for both the array reference and the current size
+    public static void printOversizeArray(String[] arrayRef, int arraySize) {
+        int index;
+
+        System.out.print("[");
+        for (index = 0; index < arraySize; ++index) {
+            System.out.print(arrayRef[index]);
+            if (index != arraySize - 1) {  // Don't print trailing , for last element
+                System.out.print(", ");
+            }
+        }
+        System.out.println("]");
+    }
+
+    // If an array size is changed by a method, then the new array size needs to be returned by the method
+    public static int addArrayElement(String[] arrayRef, int currentSize, String elementToAdd)
+    {
+        // Check that the array has space
+        if(currentSize == arrayRef.length)
+        {
+            return currentSize;
+        }
+
+        // If the array has space, add the element
+        arrayRef[currentSize] = elementToAdd;
+        ++currentSize;
+        return currentSize;
+    }
+    // Remove the first element from an oversize array whose value is equal to targetVal
+    public static int removeFirst(String[] arrayRef, int arraySize, String targetVal)
+    {
+        boolean targetFound;
+        int index;
+
+        targetFound = false;
+
+        // Step through the array one element at a time
+        for (index = 0; index < arraySize; ++index)
+        {
+            // If matching element found, move each element to the previous index
+            if (targetFound)
+            {
+                arrayRef[index-1] = arrayRef[index];
+            }
+
+            // Check if matching element found
+            if (arrayRef[index] == targetVal)
+            {
+                targetFound = true;
+            }
+        }
+
+        // If matching element found, array size is one element smaller
+        // otherwise array size hasn't changed
+        if (targetFound)
+        {
+            return arraySize - 1;
+        }
+        else
+        {
+            return arraySize;
+        }
+    }
+
+
     public static void main(String[] args) {
         System.out.println(computeSquare(2));
         System.out.println(computeCuve(2));
@@ -63,6 +129,21 @@ public class Main {
 
         Scanner scnr = new Scanner(System.in);
         System.out.println(usingScannerInMethodsExample(scnr));
+
+        final int NAMES_CAPACITY = 5;
+        String[] names = new String[NAMES_CAPACITY];
+        int namesSize = 0;
+
+        namesSize = addArrayElement(names, namesSize, "Jamal");
+        namesSize = addArrayElement(names, namesSize, "Jovanna");
+        namesSize = addArrayElement(names, namesSize, "Naveen");
+        namesSize = addArrayElement(names, namesSize, "Rosie");
+        namesSize = addArrayElement(names, namesSize, "Blake");
+        namesSize = addArrayElement(names, namesSize, "Kelly");
+        printOversizeArray(names, namesSize);
+
+        namesSize = removeFirst(names, namesSize, "Jovanna");
+        printOversizeArray(names, namesSize);
     }
 
     // User defined methods can appear above or below where they are called
@@ -70,6 +151,4 @@ public class Main {
     {
         return numToCube * numToCube * numToCube;
     }
-
-    // A method's local variables are discarded from memory upon a method's return; each new call creates new local variables in memory.
 }
