@@ -158,7 +158,21 @@ public class Main {
     }
 
 
-
+    /**
+     * Javadoc is a tool that parses specially formatted multi-line comments to generate program documentation in HTML format
+     * The Javadoc tool must be un in order to create and update the HTML documentation
+     * Those special doc comments begin with /** and end with * / (<-no space)
+     * Doc comments can only describe specific program items, like methods or classes
+     * The doc comment must immediately precede the item
+     * The overall description describes the item's purpose and extends to the first @, which denotes the beginning of the tags section
+     * The @param tag is for describing a method parameter's type, purpose, etc
+     * The @return tag describes a method's return type, purpose, etc.
+     * The @author tag lists the item's author.
+     * The @see tag refers to relevant information like a website, another method, etc.
+     * The @version tag indicates the item's version number
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         System.out.println(computeSquare(2));
         System.out.println(computeCuve(2));
